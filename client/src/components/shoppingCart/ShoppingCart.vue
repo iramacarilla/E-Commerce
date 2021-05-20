@@ -53,6 +53,7 @@ export default {
 
 <style lang="scss" scoped>
 .shopping-cart {
+  z-index: 1;
   position: absolute;
   right: 5%;
   top: 100%;

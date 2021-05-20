@@ -1,6 +1,20 @@
 <template>
   <div class="orders-list">
-    <p class="orders-list__nothing" v-if="!shoppingCart.length">No orders</p>
+    <Modal v-if="isOpen" @closeModal="closeModal">
+      <div class="order-modal">
+        <p class="order-modal__text">Thanks, for your order</p>
+
+        <router-link :to="{ name: 'orders' }" class="order-modal__link"
+          >To your orders</router-link
+        >
+        <router-link :to="{ name: 'Products' }" class="order-modal__link"
+          >Continue shopping</router-link
+        >
+      </div>
+    </Modal>
+    <p class="orders-list__nothing" v-if="!shoppingCart.length">
+      No items in your shopping cart
+    </p>
     <template v-else>
       <CartItem
         v-for="order in shoppingCart"
@@ -9,7 +23,8 @@
       />
     </template>
     <p class="order-total">Total: {{ shoppingCartTotal }}</p>
-    <Button class="order-btn" @click="handleOrder">
+
+    <Button v-if="shoppingCart.length" class="order-btn" @click="handleOrder">
       Make an order
     </Button>
   </div>
@@ -18,6 +33,7 @@
 <script>
 //:loading="isLoading"
 import { mapActions, mapGetters } from "vuex";
+import Modal from "../modal/Modal.vue";
 //import { createOrder } from "../../services/orders.service";
 import Button from "../shared/Button";
 import CartItem from "./CartItem";
@@ -26,8 +42,13 @@ export default {
   components: {
     CartItem,
     Button,
+    Modal,
   },
-
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
   computed: {
     ...mapGetters(["shoppingCart", "shoppingCartTotal", "orders"]),
   },
@@ -42,9 +63,9 @@ export default {
           totalPrice: this.shoppingCartTotal,
         });
         this.clearCart();
-
-        this.getOrders();
-        console.log("this.orders", this.orders);
+        this.isOpen = true;
+        //this.getOrders();
+        //console.log("this.orders", this.orders);
         this.$notify({
           type: "success",
           title: "Заказ добавлен",
@@ -59,6 +80,9 @@ export default {
         //this.isLoading = false;
       }
     },
+    closeModal() {
+      this.isOpen = false;
+    },
   },
 };
 </script>
@@ -67,8 +91,9 @@ export default {
 .orders-list {
   margin-top: 20px;
   &__nothing {
-    margin-top: 30px;
-    font-size: 34px;
+    display: block;
+    margin-top: 50px;
+    font-size: 24px;
     color: #6d5c47;
   }
 }
@@ -79,5 +104,22 @@ export default {
 }
 .order-btn {
   margin-top: 30px;
+}
+.order-modal {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  &__text {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  &__link {
+    margin-bottom: 15px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #c5955c;
+    text-align: center;
+  }
 }
 </style>

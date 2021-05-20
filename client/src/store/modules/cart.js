@@ -1,5 +1,6 @@
 //const initialState = [];
 export default {
+  //namespaced: true,
   state: {
     cart: [],
   },

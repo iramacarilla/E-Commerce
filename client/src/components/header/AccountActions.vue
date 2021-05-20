@@ -1,21 +1,7 @@
 <template>
   <div class="account-actions" @mousemover="open" @mouseleave="close">
     <button type="button" @click="toggle" class="account-actions__btn">
-      <span class="account-actions__text">Profile</span>
-      <svg
-        class="account-actions__icon"
-        width="16"
-        height="18"
-        viewBox="0 0 16 18"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8 0C5.38286 0 3.25391 2.12896 3.25391 4.74609C3.25391 7.36323 5.38286 9.49219 8 9.49219C10.6171 9.49219 12.7461 7.36323 12.7461 4.74609C12.7461 2.12896 10.6171 0 8 0Z"
-        />
-        <path
-          d="M15.8216 14.0161C14.4028 11.8877 12.0282 10.6172 9.4708 10.6172H6.5292C3.9718 10.6172 1.5972 11.8877 0.178438 14.0161L0.0898438 14.1489V18H15.9102H15.9102V14.1489L15.8216 14.0161Z"
-        />
-      </svg>
+      <img src="../../assets/svg/user.svg" width="25px" alt="" srcset="" />
       <ul v-show="isOpen" class="account-actions__list">
         <li class="account-actions__item">
           <router-link class="account-actions__link" :to="{ name: 'orders' }">
@@ -40,6 +26,7 @@
 import { mapActions } from "vuex";
 export default {
   name: "AccountActions",
+  props: ["cart"],
   data() {
     return {
       isOpen: false,
@@ -47,6 +34,7 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["logOut"]),
+    ...mapActions(["clearCart"]),
     open() {
       this.isOpen = true;
     },
@@ -59,11 +47,13 @@ export default {
     async handleLogOut() {
       try {
         await this.logOut();
+        this.clearCart();
         const { requiresAuth } = this.$route.meta;
-        console.log(requiresAuth);
+
+        //console.log(requiresAuth);
         if (!requiresAuth) {
           this.$router.push({ name: "login-page" });
-        }
+        } else this.$router.push({ name: "login-page" });
       } catch (error) {
         this.$notify({
           type: "error",
@@ -94,6 +84,7 @@ export default {
     font-size: 16px;
     padding: 0;
     transition: color 0.4s;
+    margin-left: 20px;
   }
   &__text {
     margin-right: 5px;

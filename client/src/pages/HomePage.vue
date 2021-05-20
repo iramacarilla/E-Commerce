@@ -83,7 +83,7 @@ export default {
     },*/
     filterByPrice(products) {
       if (!this.filters.price) return products;
-      console.log("products", products);
+      //console.log("products", products);
       return products.filter((product) => {
         return product.price >= this.filters.price;
       });

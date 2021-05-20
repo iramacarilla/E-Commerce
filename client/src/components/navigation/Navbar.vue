@@ -68,13 +68,14 @@ export default {
 }
 .navbar {
   position: relative;
-  padding: 10px;
+  padding: 10px 70px;
   background-color: #a4947d;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  //justify-content: space-evenly;
 }
 .navbar-brand {
+  flex: 2 1 0;
   text-decoration: none;
 }
 .nav-btn {

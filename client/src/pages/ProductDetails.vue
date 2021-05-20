@@ -98,5 +98,8 @@ export default {
     color: #847159;
     margin-bottom: 10px;
   }
+  /*&__btn {
+    z-index: -1;
+  }*/
 }
 </style>

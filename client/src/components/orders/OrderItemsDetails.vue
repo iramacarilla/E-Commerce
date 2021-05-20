@@ -35,35 +35,37 @@ export default {
 <style lang="scss" scoped>
 .orders-item {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   &__title {
-    font-size: 24px;
+    font-size: 18px;
     color: #6d5c47;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: 700;
   }
   &__photo {
     display: block;
-    width: 45%;
+    width: 6%;
+    //height: 7%;
     object-fit: cover;
+    margin-right: 20px;
   }
   &__details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 55%;
-    padding: 20px;
-    border: 2px solid #e1efff;
+    width: 90%;
+    padding: 5px 16px;
+    border: 1px solid #a29d9624;
     border-left: none;
   }
   &__price {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #847159;
   }
   &__location {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 10px;
     color: #847159;
   }

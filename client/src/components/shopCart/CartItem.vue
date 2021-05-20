@@ -10,22 +10,25 @@
           <p>Quantity: {{ order.quantity }}</p>
         </div>
       </div>
-      <div class="shopcard-product__btn" role="group">
+      <div class="orders-item__btn" role="group">
         <button
-          class="shopcard-product__btn-plus"
+          class="orders-item__btn-plus"
           @click="minusProductToCart({ product: order.product, quantity })"
         >
           -
         </button>
         {{ order.quantity }}
         <button
-          class="shopcard-product__btn-minus"
+          class="orders-item__btn-minus"
           @click="addProductToCart({ product: order.product, quantity })"
         >
           +
         </button>
       </div>
-      <button @click="deleteProductFromCart(order.product)">
+      <button
+        class="orders-item__btn-delete"
+        @click="deleteProductFromCart(order.product)"
+      >
         Delete
       </button>
     </div>
@@ -70,6 +73,7 @@ export default {
 .orders-item {
   display: flex;
   margin-bottom: 20px;
+  border: 1px solid #9b9a99;
   &__title {
     font-size: 24px;
     color: #6d5c47;
@@ -78,16 +82,16 @@ export default {
   }
   &__photo {
     display: block;
-    width: 45%;
+    width: 25%;
     object-fit: cover;
   }
   &__details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 55%;
+    // width: 55%;
     padding: 20px;
-    border: 2px solid #e1efff;
+    // border: 2px solid #e1efff;
     border-left: none;
   }
   &__price {
@@ -105,6 +109,14 @@ export default {
     font-size: 18px;
     margin-bottom: 10px;
     color: #6d5c47;
+  }
+  &__btn-delete {
+    width: 100px;
+    padding: 7px 0;
+    background: transparent;
+    border: none;
+    border: 1px solid #6d5c47;
+    font-size: 14px;
   }
 }
 </style>

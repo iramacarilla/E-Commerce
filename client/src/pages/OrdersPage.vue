@@ -1,5 +1,8 @@
 <template>
-  <OrdersList />
+  <div class="orders">
+    <h2 class="orders__title">Your Orders</h2>
+    <OrdersList />
+  </div>
 </template>
 
 <script>
@@ -24,4 +27,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.orders {
+  padding: 50px 30px 0 30px;
+  &__title {
+    display: block;
+    text-align: center;
+    font-size: 36px;
+    color: #493b2a;
+    margin-bottom: 60px;
+  }
+}
+</style>

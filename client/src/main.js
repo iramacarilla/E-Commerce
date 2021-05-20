@@ -4,6 +4,7 @@ import "./assets/scss/index.scss";
 import VueRouter from "vue-router";
 import router from "./router";
 import Notifications from "vue-notification";
+import "material-design-icons-iconfont";
 import store from "./store";
 
 Vue.config.productionTip = false;
