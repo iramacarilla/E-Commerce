@@ -48,7 +48,7 @@ export default {
   position: relative;
   display: inline-block;
   font-size: 18px;
-  background: #ff662d;
+  background: #dbbd96;
   color: #fff;
   cursor: pointer;
   min-width: 220px;
@@ -64,7 +64,7 @@ export default {
   &--outlined {
     background: none;
     border: 1px solid #ff662d;
-    color: #ff662d;
+    color: #dbbd96;
   }
   &__content {
     &--hidden {

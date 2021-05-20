@@ -1,3 +1,4 @@
+//const initialState = [];
 export default {
   state: {
     cart: [],
@@ -24,13 +25,13 @@ export default {
   mutations: {
     ADD_TO_CART: (state, { product, quantity }) => {
       let exists = state.cart.find((item) => item.product._id === product._id);
+
       if (exists) {
         exists.quantity += quantity;
         return;
       }
 
       state.cart.push({ product, quantity });
-      console.log("product", product);
     },
     MINUS_TO_CART: (state, { product, quantity }) => {
       let exists = state.cart.find((item) => item.product._id === product._id);
@@ -44,6 +45,26 @@ export default {
 
       state.cart.push({ product, quantity });
     },
+    DELETE_FROM_CART: (state, product) => {
+      /*state.cart.filter((item) =>
+        console.log(
+          "product._id",
+          product._id,
+          "item.product._id",
+          item.product._id
+        )
+      );*/
+      state.cart = state.cart.filter(
+        (item) => item.product._id !== product._id
+      );
+      //console.log("DeleteProduct", product);
+      console.log("Deletestate.cartProduct", state.cart);
+      return;
+    },
+    CLEAR_CART_DATA(state) {
+      state.cart = [];
+      //Object.assign(state, { ...initialState });
+    },
   },
   actions: {
     addProductToCart: ({ commit }, { product, quantity }) => {
@@ -51,6 +72,12 @@ export default {
     },
     minusProductToCart: ({ commit }, { product, quantity }) => {
       commit("MINUS_TO_CART", { product, quantity });
+    },
+    deleteProductFromCart: ({ commit }, product) => {
+      commit("DELETE_FROM_CART", product);
+    },
+    clearCart({ commit }) {
+      commit("CLEAR_CART_DATA");
     },
   },
 };

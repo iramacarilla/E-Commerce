@@ -1,40 +1,26 @@
 <template>
-  <div>
-    <div v-if="product" class="container my-5 py-5">
-      <section class="text-center">
-        <h3 class="mb-5 font-weight-bold">Product Details</h3>
+  <div class="product-page">
+    <h2 class="product-details__title">Product Details</h2>
+    <div v-if="product" class="product-details">
+      <div class="product-details__left">
+        <img :src="product.imgUrl" alt="" class="product-details__img" />
+      </div>
 
-        <div class="row align-items-center gx-5">
-          <div class="col-lg-6">
-            <img :src="product.imgUrl" alt="" class="img-fluid" />
-          </div>
-
-          <div class="col-lg-6 text-center text-lg-start">
-            <div>
-              <h2 class="text-center font-weight-bold mb-5">
-                {{ product.title }}
-              </h2>
-
-              <div class="mb-5">
-                <h5 class="mb-3">Description</h5>
-                <p>{{ product.descr }}</p>
-              </div>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center">
-              <h3>
-                <span class="text-danger">{{ product.price }}</span> SEK
-              </h3>
-              <button
-                class="btn btn-primary"
-                @click="addProductToCart({ product, quantity })"
-              >
-                Add to cart
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div class="product-details__right">
+        <h2 class="product-details__name">
+          {{ product.title }}
+        </h2>
+        <h3>
+          <span class="product-details__price">$ {{ product.price }}</span>
+        </h3>
+        <p class="product-details__descr">{{ product.descr }}</p>
+        <Button
+          class="product-details__btn"
+          @click="addProductToCart({ product, quantity })"
+        >
+          Add to cart
+        </Button>
+      </div>
     </div>
 
     <div v-else>
@@ -45,7 +31,9 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import Button from "../components/shared/Button.vue";
 export default {
+  components: { Button },
   name: "ProductDetails",
   props: ["id"],
   data() {
@@ -68,4 +56,47 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.product-page {
+  padding: 30px 30px 0;
+}
+.product-details {
+  display: flex;
+  padding-top: 30px;
+  &__title {
+    color: #383026;
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+  &__right {
+    flex: 2 1 0;
+    margin-top: 50px;
+  }
+  &__left {
+    flex: 3 1 0;
+    margin-right: -80px;
+  }
+  &__img {
+    max-width: 80%;
+  }
+  &__name {
+    color: #847159;
+    font-size: 22px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  &__descr {
+    color: #847159;
+    font-size: 16px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+  &__price {
+    display: block;
+    font-size: 26px;
+    font-weight: 600;
+    color: #847159;
+    margin-bottom: 10px;
+  }
+}
+</style>

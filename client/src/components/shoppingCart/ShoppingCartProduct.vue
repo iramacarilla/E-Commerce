@@ -1,36 +1,26 @@
 <template>
   <div class="cart-item">
-    <div class="p-2 d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
-        <img :src="item.product.imgUrl" alt="" class="img-fluid image-width" />
-        <div>
-          <div>
-            <strong>{{ item.product.title }}</strong>
-          </div>
-          <div>
-            <small>{{ item.quantity }} x {{ item.product.price }}</small>
-          </div>
-        </div>
+    <div class="shopcard-product">
+      <div class="shopcard-product__left">
+        <img :src="item.product.imgUrl" alt="" class="shopcard-product__img" />
       </div>
-
-      <div>
-        <div class="btn-group btn-group-sm me-2" role="group">
+      <div class="shopcard-product__right">
+        <p>{{ item.product.title }}</p>
+        <p>{{ item.quantity }} x {{ item.product.price }}</p>
+        <div class="shopcard-product__btn" role="group">
           <button
-            class="btn btn-dark"
-            @click="minusProductToCart({ product, quantity })"
+            class="shopcard-product__btn-plus"
+            @click="minusProductToCart({ product: item.product, quantity })"
           >
             -
           </button>
           <button
-            class="btn btn-dark"
-            @click="addProductToCart({ product, quantity })"
+            class="shopcard-product__btn-minus"
+            @click="addProductToCart({ product: item.product, quantity })"
           >
             +
           </button>
         </div>
-        <button class="btn btn-danger btn-sm" @click.stop="">
-          <i class="fas fa-trash"></i>
-        </button>
       </div>
     </div>
   </div>
@@ -51,11 +41,24 @@ export default {
   methods: {
     ...mapActions(["getOneProduct", "addProductToCart", "minusProductToCart"]),
   },
+  /*created() {
+    this.getOneProduct(this.item.product._id);
+  },*/
 };
 </script>
 
-<style>
-.image-width {
-  width: 90px;
+<style lang="scss" scoped>
+.shopcard-product {
+  display: flex;
+  &__img {
+    width: 90px;
+    margin-right: 20px;
+  }
+  &__right p {
+    margin-bottom: 10px;
+  }
+  &__btn-plus {
+    margin-right: 5px;
+  }
 }
 </style>

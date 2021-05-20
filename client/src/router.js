@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import store from "./store";
 import OrderPage from "./pages/OrderPage";
+import OrdersPage from "./pages/OrdersPage";
 Vue.use(VueRouter);
 
 const routes = [
@@ -37,6 +38,14 @@ const routes = [
     path: "/order",
     component: OrderPage,
     name: "order",
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/orders",
+    component: OrdersPage,
+    name: "orders",
     meta: {
       requiresAuth: true,
     },

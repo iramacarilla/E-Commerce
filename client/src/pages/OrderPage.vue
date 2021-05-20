@@ -1,8 +1,8 @@
 <template>
-  <main class="my-orders-page">
+  <main class="orders-page">
     <Container>
-      <section class="my-orders-page__content">
-        <MainTitle>Orders</MainTitle>
+      <section class="orders-page__content">
+        <h2 class="orders-page__title">Orders</h2>
         <CartsList :items="shoppingCart" />
       </section>
     </Container>
@@ -12,14 +12,12 @@
 <script>
 import { mapGetters } from "vuex";
 import Container from "../components/shared/Container";
-import MainTitle from "../components/shared/MainTitle";
 import CartsList from "../components/shopCart/CartsList";
 
 export default {
   name: "OrderPage",
   components: {
     Container,
-    MainTitle,
     CartsList,
   },
   computed: {
@@ -29,10 +27,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.my-orders-page {
+.orders-page {
+  padding-top: 40px;
   &__content {
     max-width: 730px;
     margin: 0 auto 100px;
+  }
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #6d5c47;
   }
 }
 </style>

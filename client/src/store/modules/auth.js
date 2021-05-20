@@ -29,10 +29,9 @@ export default {
   actions: {
     async login({ commit }, payload) {
       const { data } = await loginUser(payload);
+
       const { user, token } = data.data;
-      console.log("data", data);
-      console.log("user", user);
-      commit("SET_USER_DATA", user);
+      commit("SET_USER_DATA", user /*{ ...user, token: token }*/);
       commit("SET_TOKEN", token);
       //commit("setUserData", user);
       //commit("setToken", token);

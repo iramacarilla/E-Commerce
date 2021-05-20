@@ -1,10 +1,10 @@
 const mongodb = require("mongoose");
-const Order = require("./orderSchema");
-
+//const Order = require("./orderSchema");
+const { gerOrders, addAnOrder } = require("../../servises/ordersSrv");
 const addOrder = async (req, res, next) => {
   try {
-    /*const userID = req.user.id;*/
-    const order = await Order.create(req.body /*, userID*/);
+    const userID = req.user.id;
+    const order = await addAnOrder(req.body, userID);
     if (order) {
       res.status(201).json({
         status: "success",
@@ -24,7 +24,23 @@ const addOrder = async (req, res, next) => {
     next(error);
   }
 };
+const getOrders = async (req, res, next) => {
+  try {
+    const userID = req.user.id;
+    const orders = await gerOrders(userID, req.query);
+    if (orders) {
+      res.status(201).json({
+        status: "success",
+        code: 201,
+        data: [...orders],
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   addOrder,
+  getOrders,
 };

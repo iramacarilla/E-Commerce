@@ -42,4 +42,4 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.validPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
-module.exports = mongodb.model("User", userSchema);
+module.exports = mongodb.model("user", userSchema);

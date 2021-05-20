@@ -1,8 +1,8 @@
 import axios from "../utils/axios";
 
 export const createOrder = (payload) => {
-  return axios.post("/orders", payload);
+  return axios.post("/order", payload);
 };
-/*export const getApp = () => {
-  return axios.get("/orders");
-};*/
+export const getAllOrders = () => {
+  return axios.get("/order");
+};

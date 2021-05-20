@@ -1,14 +1,19 @@
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
-const User = require("./userSchema");
+//const User = require("./userSchema");
+const {
+  findUserByEmail,
+  addUser,
+  updateToken,
+} = require("../../servises/userSrv");
 
 const SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 const reg = async (req, res, next) => {
   try {
     const { email } = req.body;
-    const user = await User.findOne({ email });
+    const user = await findUserByEmail(email);
     if (user) {
       return res.status(409).json({
         status: "error",
@@ -17,13 +22,13 @@ const reg = async (req, res, next) => {
         message: "Email in use",
       });
     }
-    const newUser = await new User({ ...req.body }).save();
+    const newUser = await addUser({ ...req.body });
     return res.status(201).json({
       status: "success",
       data: {
         user: {
           email: newUser.email,
-          userId: newUser.id,
+          //userId: newUser.id,
           username: newUser.username,
         },
       },
@@ -36,8 +41,8 @@ const reg = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    // const isValidPassword = await user.validPassword(password)
+    let user = await findUserByEmail(email);
+    //const isValidPassword = await user.validPassword(password)
     if (!user || !(await user.validPassword(password))) {
       return res.status(401).json({
         status: "error",
@@ -49,7 +54,10 @@ const login = async (req, res, next) => {
     const id = user._id;
     const payload = { id };
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "30d" });
-    await User.updateOne({ id }, { token });
+    await updateToken(id, token);
+    user.save();
+    //await User.updateOne({ id }, { token });
+    console.log("loginuser", user);
     return res.status(200).json({
       status: "success",
       code: 200,
@@ -67,7 +75,8 @@ const logout = async (req, res, next) => {
   try {
     const id = req.user.id;
     console.log("req", req.user);
-    await User.updateOne({ id }, null);
+    await updateToken(id, null);
+
     return res.status(204).json({
       status: "Successful operation",
       code: 204,

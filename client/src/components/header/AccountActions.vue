@@ -18,10 +18,7 @@
       </svg>
       <ul v-show="isOpen" class="account-actions__list">
         <li class="account-actions__item">
-          <router-link
-            class="account-actions__link"
-            :to="{ name: 'my-orders' }"
-          >
+          <router-link class="account-actions__link" :to="{ name: 'orders' }">
             My orders
           </router-link>
         </li>
@@ -63,6 +60,7 @@ export default {
       try {
         await this.logOut();
         const { requiresAuth } = this.$route.meta;
+        console.log(requiresAuth);
         if (!requiresAuth) {
           this.$router.push({ name: "login-page" });
         }
@@ -96,9 +94,6 @@ export default {
     font-size: 16px;
     padding: 0;
     transition: color 0.4s;
-    &:hover {
-      color: $main-color;
-    }
   }
   &__text {
     margin-right: 5px;

@@ -5,16 +5,36 @@
       <div class="orders-item__text">
         <h2 class="orders-item__title">{{ order.product.title }}</h2>
         <p class="orders-item__location">{{ order.product.descr }}</p>
-        <p class="orders-item__price">{{ order.product.price }}</p>
+        <p class="orders-item__price">$ {{ order.product.price }}</p>
         <div class="orders-item__cost">
-          <p>quantity: {{ order.quantity }}</p>
+          <p>Quantity: {{ order.quantity }}</p>
         </div>
       </div>
+      <div class="shopcard-product__btn" role="group">
+        <button
+          class="shopcard-product__btn-plus"
+          @click="minusProductToCart({ product: order.product, quantity })"
+        >
+          -
+        </button>
+        {{ order.quantity }}
+        <button
+          class="shopcard-product__btn-minus"
+          @click="addProductToCart({ product: order.product, quantity })"
+        >
+          +
+        </button>
+      </div>
+      <button @click="deleteProductFromCart(order.product)">
+        Delete
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "CartItem",
   props: {
@@ -23,6 +43,26 @@ export default {
       required: true,
     },
   },
+  //props: ["order", "_id"],
+  data() {
+    return {
+      quantity: 1,
+    };
+  },
+  computed: {
+    ...mapGetters(["product"]),
+  },
+  methods: {
+    ...mapActions([
+      "getOneProduct",
+      "addProductToCart",
+      "minusProductToCart",
+      "deleteProductFromCart",
+    ]),
+  },
+  /* created() {
+    console.log("IIII", this.order);
+  },*/
 };
 </script>
 
@@ -31,14 +71,14 @@ export default {
   display: flex;
   margin-bottom: 20px;
   &__title {
-    font-size: 18px;
+    font-size: 24px;
+    color: #6d5c47;
+    margin-bottom: 20px;
     font-weight: 700;
-    margin-bottom: 10px;
   }
   &__photo {
     display: block;
     width: 45%;
-    height: 190px;
     object-fit: cover;
   }
   &__details {
@@ -53,6 +93,18 @@ export default {
   &__price {
     font-size: 20px;
     font-weight: 700;
+    margin-bottom: 20px;
+    color: #847159;
+  }
+  &__location {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #847159;
+  }
+  &__cost {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #6d5c47;
   }
 }
 </style>

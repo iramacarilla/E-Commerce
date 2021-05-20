@@ -8,6 +8,7 @@ const guard = require("../utils/guard");
 router.post("/register", userModel.reg);
 router.post("/login", userModel.login);
 router.post("/logout", guard, userModel.logout);
+
 //router.get("/user", guard, UsersCtrl.getUserInfo);
 
 module.exports = router;

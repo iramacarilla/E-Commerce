@@ -23,7 +23,7 @@ export default {};
     text-decoration: none;
     transition: color 0.4s;
     &:hover {
-      color: $main-color;
+      color: rgb(59, 57, 57);;
     }
   }
 }

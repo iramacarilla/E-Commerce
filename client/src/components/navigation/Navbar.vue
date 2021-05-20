@@ -6,13 +6,16 @@
     <div class="navbar-collapse">
       <div class="nav-item dropdown">
         <button class="nav-btn" @click="toggle" href="#" type="button">
-          KOR
-          <span
-            v-show="cartItemCount"
-            class="badge rounded-pill badge-notification bg-danger"
-            >{{ cartItemCount }}</span
-          >
+          <img
+            src="../../assets/svg/shopping-basket.svg"
+            width="25px"
+            alt=""
+            srcset=""
+          />
         </button>
+        <span v-show="cartItemCount" class="nav-number">{{
+          cartItemCount
+        }}</span>
         <ShoppingCart v-show="isOpen" />
       </div>
     </div>
@@ -65,9 +68,20 @@ export default {
 }
 .navbar {
   position: relative;
-  background-color: black;
+  padding: 10px;
+  background-color: #a4947d;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+.navbar-brand {
+  text-decoration: none;
+}
+.nav-btn {
+  background-color: transparent;
+  border: none;
+}
+.nav-number {
+  vertical-align: top;
 }
 </style>

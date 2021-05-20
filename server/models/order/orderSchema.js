@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const mongodb = require("mongoose");
 
 const orderSchema = mongodb.Schema(
@@ -18,6 +19,10 @@ const orderSchema = mongodb.Schema(
     },
     totalQuantity: {
       type: Number,
+    },
+    owner: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "user",
     },
   },
   { versionKey: false }
