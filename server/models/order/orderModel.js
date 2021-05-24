@@ -1,5 +1,4 @@
 const mongodb = require("mongoose");
-//const Order = require("./orderSchema");
 const { gerOrders, addAnOrder } = require("../../servises/ordersSrv");
 const addOrder = async (req, res, next) => {
   try {

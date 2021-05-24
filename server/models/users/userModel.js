@@ -42,7 +42,6 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     let user = await findUserByEmail(email);
-    //const isValidPassword = await user.validPassword(password)
     if (!user || !(await user.validPassword(password))) {
       return res.status(401).json({
         status: "error",
@@ -56,7 +55,6 @@ const login = async (req, res, next) => {
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "30d" });
     await updateToken(id, token);
     user.save();
-    //await User.updateOne({ id }, { token });
     console.log("loginuser", user);
     return res.status(200).json({
       status: "success",

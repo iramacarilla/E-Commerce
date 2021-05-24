@@ -6,7 +6,7 @@ const guard = (req, res, next) => {
     const token = req.headers.authorization
       ? req.headers.authorization.split(" ")[1]
       : null;
-    console.log("quard", user);
+    //console.log("quard", user);
     if (err || !user) {
       return res.status(401).json({
         status: "error",
