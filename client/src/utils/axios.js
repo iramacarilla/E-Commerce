@@ -3,7 +3,7 @@ import store from "../store";
 
 const axiosInstance = axios.create({
   //baseURL: "http://localhost:3000/api",
-  baseURL: "https://clothes-e.herokuapp.com/",
+  baseURL: "https://cl-e.herokuapp.com",
 });
 axiosInstance.interceptors.request.use(
   (config) => {
