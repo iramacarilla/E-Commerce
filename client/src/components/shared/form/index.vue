@@ -25,7 +25,6 @@ export default {
       this.inputs.filter((item) => item !== input);
     },
     validate() {
-      // return this.inputs.every(input => input.validate())
       return this.inputs.reduce((isValid, input) => {
         const isInputValid = input.validate();
         return isValid && isInputValid;

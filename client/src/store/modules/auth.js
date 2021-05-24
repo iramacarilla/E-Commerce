@@ -13,14 +13,14 @@ export default {
   },
   mutations: {
     SET_USER_DATA(state, userData) {
-      console.log("userData", userData);
+      //console.log("userData", userData);
       //setUserData(state, userData) {
       state.user = userData;
     },
     SET_TOKEN(state, token) {
       //setToken(state, token) {
       state.token = token;
-      console.log("token", token);
+      //console.log("token", token);
     },
     CLEAR_USER_DATA(state) {
       Object.assign(state, { ...initialState });

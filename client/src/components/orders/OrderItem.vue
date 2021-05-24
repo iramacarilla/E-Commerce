@@ -1,9 +1,12 @@
 <template>
-  <div class="orders-item">
-    <p class="orders-item__title">
-      Order Number: <span> {{ item._id }}</span>
+  <div class="orders-items">
+    <p class="orders-items__title">
+      Order Number: <span> {{ item._id.slice(-3) }}</span>
     </p>
-    <div class="orders-item__content">
+    <span class="orders-items__total"
+      >Orders total price: $ {{ item.totalPrice }}</span
+    >
+    <div class="orders-items__content">
       <OrderItemsDetails
         v-for="part in item.items"
         :key="part._id"
@@ -27,23 +30,28 @@ export default {
       required: true,
     },
   },
-  created() {
+  /*created() {
     console.log(this.item, "ITEM");
-  },
+  },*/
 };
 </script>
 
 <style lang="scss" scoped>
-.orders-item {
+.orders-items {
+  border-bottom: 1px solid #a8aaac;
+  margin-bottom: 60px;
   &__title {
+    border-bottom: 1px solid #a8aaac;
     font-size: 24px;
     margin-bottom: 20px;
   }
   &__title span {
     font-size: 18px;
   }
-  &__content {
-    margin-bottom: 60px;
+  &__total {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 }
 </style>

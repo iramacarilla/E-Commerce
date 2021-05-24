@@ -17,7 +17,7 @@ export default {
   },
   created() {
     this.getProducts();
-    this.getOrders();
+    //this.getOrders();
     //console.log("ORDERS", this.orders);
   },
 };

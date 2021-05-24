@@ -4,9 +4,8 @@
     <div class="orders-item__details">
       <div class="orders-item__text">
         <h2 class="orders-item__title">{{ part.product.title }}</h2>
-        <p class="orders-item__location">{{ part.product.descr }}</p>
         <p class="orders-item__price">$ {{ part.product.price }}</p>
-        <p class="orders-item__quantity">Quantity: {{ part.quantity }}</p>
+        <p class="orders-item__quantity">Qnt: {{ part.quantity }}</p>
       </div>
     </div>
   </div>
@@ -55,8 +54,13 @@ export default {
     justify-content: space-between;
     width: 90%;
     padding: 5px 16px;
-    border: 1px solid #a29d9624;
+    //border: 1px solid #a29d9624;
     border-left: none;
+    align-self: center;
+  }
+  &__text {
+    display: flex;
+    justify-content: space-around;
   }
   &__price {
     font-size: 18px;

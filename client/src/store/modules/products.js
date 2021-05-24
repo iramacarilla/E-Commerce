@@ -33,7 +33,7 @@ export default {
 
     getOneProduct: async ({ commit }, id) => {
       const res = await getProductById(id);
-      console.log("product", res.data);
+      //console.log("product", res.data);
       commit("SET_PRODUCT", res.data);
     },
     cleanup: ({ commit }) => {

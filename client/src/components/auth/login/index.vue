@@ -72,27 +72,26 @@ export default {
   methods: {
     ...mapActions("auth", ["login"]),
     async handleSubmit() {
-      // const isFormValid = this.$refs.form.validate();
-      console.log("this.formData", this.formData);
-      //if (isFormValid) {
-      try {
-        this.loading = true;
+      const isFormValid = this.$refs.form.validate();
+      //console.log("this.formData", this.formData);
+      if (isFormValid) {
+        try {
+          this.loading = true;
 
-        await this.login(this.formData);
+          await this.login(this.formData);
 
-        this.$router.push({ name: "Products" });
-        // console.log("data", this.$store.state);
-      } catch (error) {
-        this.$notify({
-          type: "error",
-          title: "Something wrong",
-          text: error.message,
-        });
-      } finally {
-        this.loading = false;
+          this.$router.push({ name: "Products" });
+          // console.log("data", this.$store.state);
+        } catch (error) {
+          this.$notify({
+            type: "error",
+            title: "Something wrong",
+            text: error.response.data.message,
+          });
+        } finally {
+          this.loading = false;
+        }
       }
-
-      // }
     },
   },
 };
@@ -106,6 +105,8 @@ export default {
   }
   &__title {
     text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
   }
   &__input {
     margin-bottom: 20px;
@@ -114,6 +115,7 @@ export default {
   &__btn {
     margin-top: 15px;
     width: 100%;
+    border-radius: 5px;
   }
 }
 </style>

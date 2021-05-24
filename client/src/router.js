@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-//import Home from "./pages/Home.vue";
 import Products from "./pages/Products.vue";
 import ProductDetails from "./pages/ProductDetails.vue";
 import LoginPage from "./pages/LoginPage";
@@ -21,20 +20,19 @@ const routes = [
     name: "ProductDetails",
     component: ProductDetails,
     props: true,
-    meta: {
+    /* meta: {
       requiresAuth: true,
-    },
-  },
-  {
+    },*/
+  } /* "./pages/About.vue"),
+  },*/,
+  /*{
     path: "/about",
     name: "About",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "./pages/About.vue"),
-  },
-  {
+      import(/* webpackChunkName: "about" */ {
     path: "/order",
     component: OrderPage,
     name: "order",

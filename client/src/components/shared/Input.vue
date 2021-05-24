@@ -92,20 +92,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/scss/variables";
-
 .wrapper-input {
   position: relative;
   display: inline-flex;
 }
 .custom-input {
-  height: 40px;
+  height: 50px;
   width: 100%;
-  border: 2px solid $main-color;
+  border: 1px solid #968771;
   font-size: 18px;
   outline: none;
   line-height: inherit;
   padding: 8px 15px;
+  border-radius: 5px;
   &::placeholder {
     color: inherit;
   }

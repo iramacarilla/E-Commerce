@@ -105,35 +105,32 @@ export default {
     ...mapActions("auth", ["registration"]),
     async handleSubmit() {
       const { form } = this.$refs;
-      //const isFormValid = this.$refs.form.validate();
-      //console.log("this.formData", this.formData);
+      const isFormValid = this.$refs.form.validate();
+
       const { username, email, password } = this.formData;
-      // if (isFormValid) {
-      try {
-        this.loading = true;
+      if (isFormValid) {
+        try {
+          this.loading = true;
+          await this.registration({
+            username,
+            email,
+            password,
+          });
 
-        //await this.$store.dispatch("auth/registration", {
-        await this.registration({
-          username,
-          email,
-          password,
-        });
-
-        this.$router.push({ name: "login-page" });
-        console.log("data", this.$store.state);
-        form.reset();
-      } catch (error) {
-        this.$notify({
-          type: "error",
-          title: "Something wrong",
-          text: error.message,
-        });
-        console.log("error", error);
-      } finally {
-        this.loading = false;
+          this.$router.push({ name: "login-page" });
+          //console.log("data", this.$store.state);
+          form.reset();
+        } catch (error) {
+          this.$notify({
+            type: "error",
+            title: "Something wrong",
+            text: error.response.data.message,
+          });
+        } finally {
+          this.loading = false;
+        }
       }
     },
-    // },
   },
 };
 </script>
@@ -146,6 +143,8 @@ export default {
   }
   &__title {
     text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
   }
   &__input {
     margin-bottom: 20px;
@@ -154,6 +153,7 @@ export default {
   &__btn {
     margin-top: 15px;
     width: 100%;
+    border-radius: 5px;
   }
 }
 </style>

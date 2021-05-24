@@ -39,7 +39,7 @@ export default {
       if (exists) {
         if (exists.quantity > 0) {
           exists.quantity -= quantity;
-          console.log("exists.quantity", exists.quantity);
+          //console.log("exists.quantity", exists.quantity);
           return;
         } else return;
       }
@@ -59,7 +59,7 @@ export default {
         (item) => item.product._id !== product._id
       );
       //console.log("DeleteProduct", product);
-      console.log("Deletestate.cartProduct", state.cart);
+      //console.log("Deletestate.cartProduct", state.cart);
       return;
     },
     CLEAR_CART_DATA(state) {

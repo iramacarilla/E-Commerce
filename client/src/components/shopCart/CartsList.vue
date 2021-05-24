@@ -22,7 +22,9 @@
         :order="order"
       />
     </template>
-    <p class="order-total">Total: {{ shoppingCartTotal }}</p>
+    <p v-if="shoppingCart.length" class="order-total">
+      Total: {{ shoppingCartTotal }}
+    </p>
 
     <Button v-if="shoppingCart.length" class="order-btn" @click="handleOrder">
       Make an order
@@ -50,7 +52,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["shoppingCart", "shoppingCartTotal", "orders"]),
+    ...mapGetters([
+      "shoppingCart",
+      "shoppingCartTotal",
+      "cartItemCount",
+      "orders",
+    ]),
   },
   methods: {
     ...mapActions(["addOrder", "clearCart", "getOrders"]),
@@ -61,20 +68,17 @@ export default {
         await this.addOrder({
           items: this.shoppingCart,
           totalPrice: this.shoppingCartTotal,
+          totalQuantity: this.cartItemCount,
         });
         this.clearCart();
         this.isOpen = true;
         //this.getOrders();
         //console.log("this.orders", this.orders);
-        this.$notify({
-          type: "success",
-          title: "Заказ добавлен",
-        });
       } catch (error) {
         this.$notify({
           type: "error",
           title: "Произошла ошибка",
-          text: error.message,
+          text: error.response.data.message,
         });
       } finally {
         //this.isLoading = false;

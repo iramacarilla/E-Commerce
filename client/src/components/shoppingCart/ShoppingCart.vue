@@ -14,13 +14,13 @@
       <div class="dropdown-divider"></div>
     </div>
 
-    <div class="p-2 d-flex justify-content-between align-items-center">
+    <div>
       <div>
-        <div class="shopping-cart__price">
+        <div v-if="shoppingCart.length > 0" class="shopping-cart__price">
           Totalt: $ <span> {{ shoppingCartTotal }} </span>
         </div>
       </div>
-      <Button class="btn btn-primary" @click="getCart">
+      <Button v-if="shoppingCart.length > 0" class="btn ">
         <router-link class="shopping-cart__link" :to="{ name: 'order' }">
           Checkout
         </router-link>
@@ -42,11 +42,6 @@ export default {
   props: ["cart"],
   computed: {
     ...mapGetters(["shoppingCart", "shoppingCartTotal"]),
-  },
-  methods: {
-    getCart() {
-      //console.log("this.cart", this.shoppingCart);
-    },
   },
 };
 </script>

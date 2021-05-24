@@ -58,7 +58,7 @@ export default {
         this.$notify({
           type: "error",
           title: "Someting went wrong",
-          text: error.message,
+          text: error.response.data.message,
         });
       }
     },
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/scss/variables.scss";
+
 .account-actions {
   position: relative;
   display: inline-flex;
@@ -101,27 +101,28 @@ export default {
     top: 100%;
     background: #fff;
     padding: 15px;
-    color: #000;
-    width: 150px;
-    border: 1px solid $secondary-color;
+    color: rgb(155, 130, 85);
+    width: 250px;
+    border: 1px solid #ece9e1;
+    box-shadow: 0px 0px 10px rgba(175, 170, 144, 0.2);
   }
   &__item {
     margin-bottom: 5px;
     transition: color 0.4s;
     &:hover {
-      color: $main-color;
+      color: #c5955c;
     }
   }
   &__link {
     text-decoration: none;
-    color: inherit;
+    color: rgb(155, 130, 85);
   }
   &__logout {
     padding: 0;
     background: none;
     border: none;
     font-size: inherit;
-    color: inherit;
+    color: rgb(155, 130, 85);
     font-family: inherit;
     cursor: pointer;
   }

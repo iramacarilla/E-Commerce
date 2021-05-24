@@ -1,11 +1,11 @@
 <template>
   <nav class="navbar">
-    <router-link class="navbar-brand" to="/">
+    <router-link class="navbar__logo" to="/">
       <Logo />
     </router-link>
-    <div class="navbar-collapse">
-      <div class="nav-item dropdown">
-        <button class="nav-btn" @click="toggle" href="#" type="button">
+    <div>
+      <div class="navbar__item ">
+        <button class="navbar__btn" @click="toggle" href="#" type="button">
           <img
             src="../../assets/svg/shopping-basket.svg"
             width="25px"
@@ -13,7 +13,7 @@
             srcset=""
           />
         </button>
-        <span v-show="cartItemCount" class="nav-number">{{
+        <span v-show="cartItemCount" class="navbar__number">{{
           cartItemCount
         }}</span>
         <ShoppingCart v-show="isOpen" />
@@ -59,6 +59,11 @@ export default {
       this.isOpen = !this.isOpen;
     },
   },
+  watch: {
+    "$route.path"() {
+      this.close();
+    },
+  },
 };
 </script>
 
@@ -73,16 +78,16 @@ export default {
   display: flex;
   align-items: center;
   //justify-content: space-evenly;
-}
-.navbar-brand {
-  flex: 2 1 0;
-  text-decoration: none;
-}
-.nav-btn {
-  background-color: transparent;
-  border: none;
-}
-.nav-number {
-  vertical-align: top;
+  &__logo {
+    flex: 2 1 0;
+    text-decoration: none;
+  }
+  &__btn {
+    background-color: transparent;
+    border: none;
+  }
+  &__number {
+    vertical-align: top;
+  }
 }
 </style>

@@ -25,7 +25,7 @@ export default {
   },
   async created() {
     await this.getOrders();
-    console.log(this.orders, "ORDERS");
+    //console.log(this.orders, "ORDERS");
   },
 };
 </script>

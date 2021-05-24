@@ -2,8 +2,8 @@ import axios from "axios";
 import store from "../store";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api",
-  //baseURL: "https://apt-booking-api.herokuapp.com/",
+  //baseURL: "http://localhost:3000/api",
+  baseURL: "https://clothes-e.herokuapp.com/",
 });
 axiosInstance.interceptors.request.use(
   (config) => {
