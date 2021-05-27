@@ -56,7 +56,7 @@ export default {
   &__link {
     position: absolute;
     right: 5%;
-    top: 105%;
+    top: 80%;
     background: #fff;
     padding: 15px;
     width: 250px;
