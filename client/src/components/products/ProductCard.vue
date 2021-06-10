@@ -29,10 +29,12 @@ export default {
   margin-right: 15px;
   margin-bottom: 40px;
   &__title {
-    font-family: "Montserrat-Bold";
-    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
     color: #caac86;
-    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    font-weight: 400;
     margin-bottom: 10px;
     margin-top: 20px;
     margin-right: 20px;
@@ -48,7 +50,7 @@ export default {
   }
   &__btn {
     display: block;
-    font-size: 20px;
+    font-size: 16px;
     color: #954409;
     text-decoration: none;
     text-transform: capitalize;

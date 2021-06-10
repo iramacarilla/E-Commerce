@@ -54,7 +54,6 @@ export default {
     justify-content: space-between;
     width: 90%;
     padding: 5px 16px;
-    //border: 1px solid #a29d9624;
     border-left: none;
     align-self: center;
   }
@@ -70,7 +69,7 @@ export default {
   }
   &__location {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: #847159;
   }
   &__cost {

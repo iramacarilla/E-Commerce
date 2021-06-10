@@ -70,7 +70,8 @@ export default {
     color: #847159;
   }
   &__price {
-    font-size: 18px;
+    margin-top: 10px;
+    font-size: 16px;
     margin-bottom: 20px;
     color: #847159;
   }

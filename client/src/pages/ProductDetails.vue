@@ -1,6 +1,5 @@
 <template>
   <div class="product-page">
-    <h2 class="product-details__title">Product Details</h2>
     <div v-if="product" class="product-details">
       <div class="product-details__left">
         <img :src="product.imgUrl" alt="" class="product-details__img" />
@@ -63,11 +62,6 @@ export default {
 .product-details {
   display: flex;
   padding-top: 30px;
-  &__title {
-    color: #383026;
-    font-size: 22px;
-    margin-bottom: 30px;
-  }
   &__right {
     flex: 2 1 0;
     margin-top: 50px;
@@ -82,7 +76,7 @@ export default {
   &__name {
     color: #847159;
     font-size: 22px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     line-height: 1.2;
   }
   &__descr {
@@ -96,10 +90,11 @@ export default {
     font-size: 26px;
     font-weight: 600;
     color: #847159;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
-  /*&__btn {
-    z-index: -1;
-  }*/
+  &__btn {
+    width: 100%;
+    height: 50px;
+  }
 }
 </style>

@@ -9,7 +9,6 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-//import { createOrder } from "../../services/orders.service";
 import OrderItem from "./OrderItem";
 export default {
   name: "OrdersList",
@@ -25,7 +24,6 @@ export default {
   },
   async created() {
     await this.getOrders();
-    //console.log(this.orders, "ORDERS");
   },
 };
 </script>
@@ -42,7 +40,7 @@ export default {
 }
 .order-total {
   margin-top: 30px;
-  font-size: 24px;
+  font-size: 22px;
   color: #6d5c47;
 }
 .order-btn {

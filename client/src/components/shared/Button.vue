@@ -46,6 +46,7 @@ export default {
 <style lang="scss" scoped>
 .btn {
   position: relative;
+  border-radius: 5px;
   display: inline-block;
   font-size: 18px;
   background: #dbbd96;
@@ -55,15 +56,15 @@ export default {
   border: 1px solid transparent;
   padding: 8px 15px;
   transition: background-color 0.4s, color 0.4s;
-  font-family: Montserrat, sans-serif;
-  /*&:hover {
+  font-family: "Roboto", sans-serif;
+  &:hover {
     background: #fff;
-    color: #ff662d;
-    border: 1px solid #ff662d;
-  }*/
+    color: #b88c54;
+    border: 1px solid #b88c54;
+  }
   &--outlined {
     background: none;
-    border: 1px solid #ff662d;
+    border: 1px solid #b88c54;
     color: #dbbd96;
   }
   &__content {
